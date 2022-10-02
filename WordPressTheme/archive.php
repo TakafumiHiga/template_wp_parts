@@ -3,10 +3,19 @@
   <div class="p-archive-cards">
 
     <!-- ループの開始 -->
+    <?php
+      $paged = get_query_var('paged')? get_query_var('paged') : 1;
+      $args = array(
+        'post_type' => 'post',
+        'orderby' => 'post_date',
+        'posts_per_page' => 12,
+        'paged' => $paged           //ページ送り
+      ); 
+      $the_query = new WP_Query($args); ?>
 
-    <?php if (have_posts()): ?>
-    <?php while (have_posts()) : the_post(); ?>
-
+    <?php if ( $the_query->have_posts() ): ?>
+    <?php while($the_query->have_posts()):$the_query->the_post(); ?>
+    <span class="tag"><?php echo $cat;?></span>
     <a href="<?php the_permalink(); ?>" class="">
       <figure class="">
 
@@ -25,6 +34,25 @@
     <?php endwhile; ?>
     <?php else: ?>
     <?php endif;?>
+    <?php wp_reset_postdata(); ?>
   </div>
+
+  <!-- ページナビ -->
+  <div class="l-pager">
+    <?php 
+          $GLOBALS['wp_query']->max_num_pages = $the_query->max_num_pages;
+
+            $args = array(
+            'mid_size' => 2, 
+            'prev_text' => '<', 
+            'next_text' => '>'
+          ); 
+          the_posts_pagination( $args );
+          ?>
+  </div>
+  <div class="p-top-blog__link">
+    <a class="" href="<?php bloginfo('url'); ?>/">Topへ戻る</a>
+  </div>
+  <?php get_template_part('includes/pagenavi'); ?>
 </div>
 <?php get_footer(); ?>

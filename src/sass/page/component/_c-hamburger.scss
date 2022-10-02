@@ -9,18 +9,21 @@
   border-radius: rem(100);
   // top: 0;
   // right: 0;
-  color: white;
-  background-color:white;
+  color: gray;
+  background-color:red;
   z-index: 60;
   // margin-top: rem(13);
   // margin-right: rem(10);
+  cursor: pointer;
   @include mq ('md'){
+    display: none;
   }
 }
 
 .c-hamburger div {
   height: rem(2);
   width: rem(43);
+  border-radius: 5px; /* 線幅の半分 */
   background-color: white;
   position: absolute;
   left: 50%;

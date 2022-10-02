@@ -42,6 +42,8 @@
 <?php else: ?>
 <?php endif;?>
 <?php wp_reset_postdata(); ?>
+<!-- ページナビ -->
+<?php get_template_part('includes/pagenavi'); ?>
 </div>
 
 <?php get_footer(); ?>

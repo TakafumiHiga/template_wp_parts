@@ -1,7 +1,7 @@
+jQuery(function ($) {
+  // この中であればWordpressでも「$」が使用可能になる
 
-jQuery(function ($) { // この中であればWordpressでも「$」が使用可能になる
-
-  var topBtn = $('.pagetop');
+  var topBtn = $(".pagetop");
   topBtn.hide();
 
   // ボタンの表示設定
@@ -17,9 +17,13 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
 
   // ボタンをクリックしたらスクロールして上に戻る
   topBtn.click(function () {
-    $('body,html').animate({
-      scrollTop: 0
-    }, 300, 'swing');
+    $("body,html").animate(
+      {
+        scrollTop: 0,
+      },
+      300,
+      "swing"
+    );
     return false;
   });
 
@@ -30,21 +34,40 @@ jQuery(function ($) { // この中であればWordpressでも「$」が使用可
     $(".js-drawer-open").toggleClass("open");
     $(".drawer-menu").toggleClass("open");
     $("html").toggleClass("is-fixed");
-
   });
-
-
 
   // スムーススクロール (絶対パスのリンク先が現在のページであった場合でも作動)
 
-  $(document).on('click', 'a[href*="#"]', function () {
+  $(document).on("click", 'a[href*="#"]', function () {
     let time = 400;
-    let header = $('header').innerHeight();
+    let header = $("header").innerHeight();
     let target = $(this.hash);
     if (!target.length) return;
     let targetY = target.offset().top - header;
-    $('html,body').animate({ scrollTop: targetY }, time, 'swing');
+    $("html,body").animate({ scrollTop: targetY }, time, "swing");
     return false;
   });
+});
 
+/* -------ハンバーガーメニュー----------------- */
+
+/* -------------------------------- */
+
+document.addEventListener("DOMContentLoaded", function () {
+  document
+    .getElementById("js-hamburger")
+    .addEventListener("click", function () {
+      this.classList.toggle("active");
+      document.getElementById("js-drower").classList.toggle("active");
+      document.getElementById("js-mask").classList.toggle("active");
+      document.getElementById("js-navi__menu").classList.toggle("active");
+      document.getElementById("js-body").classList.toggle("active");
+    });
+  document.getElementById("js-drower").addEventListener("click", function () {
+    this.classList.toggle("active");
+    document.getElementById("js-hamburger").classList.toggle("active");
+    document.getElementById("js-navi__menu").classList.toggle("active");
+    document.getElementById("js-body").classList.toggle("active");
+    document.getElementById("js-mask").classList.toggle("active");
+  });
 });

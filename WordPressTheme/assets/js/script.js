@@ -16,9 +16,13 @@ jQuery(function ($) {
   }); // ボタンをクリックしたらスクロールして上に戻る
 
   topBtn.click(function () {
-    $("body,html").animate({
-      scrollTop: 0
-    }, 300, "swing");
+    $("body,html").animate(
+      {
+        scrollTop: 0,
+      },
+      300,
+      "swing"
+    );
     return false;
   }); //ドロワーメニュー
 
@@ -36,9 +40,13 @@ jQuery(function ($) {
     var target = $(this.hash);
     if (!target.length) return;
     var targetY = target.offset().top - header;
-    $("html,body").animate({
-      scrollTop: targetY
-    }, time, "swing");
+    $("html,body").animate(
+      {
+        scrollTop: targetY,
+      },
+      time,
+      "swing"
+    );
     return false;
   });
 });
@@ -47,13 +55,15 @@ jQuery(function ($) {
 /* -------------------------------- */
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("js-hamburger").addEventListener("click", function () {
-    this.classList.toggle("active");
-    document.getElementById("js-drower").classList.toggle("active");
-    document.getElementById("js-mask").classList.toggle("active");
-    document.getElementById("js-navi__menu").classList.toggle("active");
-    document.getElementById("js-body").classList.toggle("active");
-  });
+  document
+    .getElementById("js-hamburger")
+    .addEventListener("click", function () {
+      this.classList.toggle("active");
+      document.getElementById("js-drower").classList.toggle("active");
+      document.getElementById("js-mask").classList.toggle("active");
+      document.getElementById("js-navi__menu").classList.toggle("active");
+      document.getElementById("js-body").classList.toggle("active");
+    });
   document.getElementById("js-drower").addEventListener("click", function () {
     this.classList.toggle("active");
     document.getElementById("js-hamburger").classList.toggle("active");
